@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://maxcdn.bootstrapcdn.com  https://ajax.googleapis.com https://maxcdn.bootstrapcdn.com; connect-src 'self' http://davidpots.com/jakeworry/017%20JSON%20Grouping\,%20part%203/data.json;">
+
+
+    <title>Lista de canciones</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- JQuery, Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- Scripts personalizados -->
+    <script src="script.js"></script>
+
+</head>
+<body>
+    <section>
+        <table class="table table-hover" id="tab tab">
+
+            <!-- Titulos de la tabla -->
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Year</th>
+                <th>Web URL</th>
+                <th> </th>
+                <th>
+                    <button type="button" class="btn" id="btnCargarCanciones">
+                        <i class="glyphicon glyphicon-signal"></i> Cargar Canciones
+                    </button>
+                </th>
+            </tr>
+            </thead>
+
+            <!-- Cuerpo de la tabla -->
+            <tbody id="cuerpoTabla">
+
+            <!-- Formulario nuevo producto -->
+            <tr>
+                <td class="col-sm-8 col-md-6">
+                    <input type="text" class="form-control"
+                           id="title" name="title"
+                           placeholder="Title">
+                </td>
+                <td class="col-sm-8 col-md-6">
+                    <input type="text" class="form-control"
+                           id="artist" name="artist"
+                           placeholder="Artist">
+                </td>
+                <td class="col-sm-1 col-md-1" style="text-align: center">
+                    <input type="text" class="form-control"
+                           id="year" name="year"
+                           placeholder="Year">
+                </td>
+                <td class="col-sm-8 col-md-6">
+                    <input type="text" class="form-control"
+                           id="url" name="url"
+                           placeholder="URL">
+                </td>
+                <td class="col-sm-1 col-md-1">
+                </td>
+
+                <td class="col-sm-1 col-md-1">
+                    <!-- Boton para agregar la canción al carrito -->
+                    <button type="button" class="btn btn-success" onclick="agregarCancion(document.getElementById('title'),document.getElementById('artist').value,document.getElementById('year').value,document.getElementById('artist').value,document.getElementById('url').value)">
+                        <i class="glyphicon glyphicon-plus"></i> Agregar
+                    </button>
+                </td>
+            </tr>
+
+            <!-- Ejemplo : Producto 1 -->
+            <tr>
+                <td class="col-sm-8 col-md-6">
+                    <h4 class="media-heading producto"> </h4>
+                </td>
+                <td class="col-sm-8 col-md-6">
+                    <h4 class="media-heading producto"> </h4>
+                </td>
+                <td class="col-sm-1 col-md-1" style="text-align: center">
+                    <strong class="cantidad"></strong>
+                </td>
+                <td class="col-sm-8 col-md-6">
+                    <h4 class="media-heading producto"> </h4>
+                </td>
+
+                <td class="col-sm-1 col-md-1">
+
+                    <!-- Boton de Remover producto del carrito -->
+                    <button type="button" class="btn btn-danger" onclick="removerCancion(0)">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-success" onclick="agregarCancionLista(0)">
+                        <i class="glyphicon glyphicon-plus"></i>
+                    </button>
+                </td>
+            </tr>
+
+            <!-- Botones al final de la tabla -->
+            <!--tr>
+                <td colspan="3"></td>
+                <td>
+                    <button type="button" class="btn btn-default">
+                        <i class="glyphicon glyphicon-shopping-cart"></i> Seguir Comprando
+                    </button></td>
+                <td>
+                    <button type="button" class="btn btn-success" onclick="actualizarTotal()">
+                        Pagar <i class="glyphicon glyphicon-play"></i>
+                    </button></td>
+            </tr-->
+            </tbody>
+        </table>
+    </section>
+    <aside>
+
+    </aside>
+</body>
+</html>
