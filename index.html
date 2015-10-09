@@ -24,18 +24,20 @@
 
 </head>
 <body>
-    <div style="width: 100%; overflow: hidden;">
-    <div id="listaCanciones" style="width: 67%; float: left;">
-        <script id="canciones" type="text/x-handlebars-template">
+    <div style="width: 100%; overflow: hidden; margin-top: 3%;">
+    <div id="listaCanciones" style=" margin-left:2%; width: 67%; float: left;">
+
             <table class="table table-hover" id="tab tab">
                 <!-- Titulos de la tabla -->
                 <thead>
                 <tr>
+                    <th> </th>
                     <th>Title</th>
                     <th>Artist</th>
                     <th>Year</th>
                     <th>Web URL</th>
                     <th> </th>
+
                 </tr>
                 </thead>
 
@@ -44,6 +46,7 @@
 
                 <!-- Formulario nueva cancion -->
                     <tr>
+                        <td class="col-sm-1 col-md-1"></td>
                         <td class="col-sm-3 col-md-1">
                             <input type="text" class="form-control"
                                    id="title" name="title"
@@ -66,81 +69,93 @@
                         </td>
                         <td class="col-sm-1 col-md-1">
                             <!-- Boton para agregar la canción al carrito -->
-                            <button type="button" class="btn btn-success" id="btnAgregarCancion">
+                            <button type="button" class="btn" id="btnAgregarCancion">
                                 <i class="glyphicon glyphicon-plus"></i> Agregar
                             </button>
                         </td>
-                    </tr>
 
+                    </tr>
+                <script id="canciones" type="text/x-handlebars-template">
                     {{#each this}}
                         <tr>
-                            <td class="col-sm-3 col-md-1" id={{id}}>{{title}}</td>
-                            <td class="col-sm-3 col-md-1" id={{id}}>{{artist}}</td>
-                            <td class="col-sm-1 col-md-1" style="text-align: center" id={{id}}>{{year}}</td>
-                            <td class="col-sm-3 col-md-1" id={{id}}><a href="">{{web_url}}</a></td>
-                            <td class="col-sm-1 col-md-1" id={{id}}>
-                                <button type="button" class="btn btn-success cancion" id={{id}}>
+                            <td><input type="checkbox" class="check" id="{{@index}}"></td>
+                            <td class="col-sm-3 col-md-1" >{{title}}</td>
+                            <td class="col-sm-3 col-md-1" >{{artist}}</td>
+                            <td class="col-sm-1 col-md-1" style="text-align: center">{{year}}</td>
+                            <td class="col-sm-3 col-md-1" ><a href={{web_url}}>{{web_url}}</a></td>
+                            <td class="col-sm-1 col-md-1" >
+                                <!--button type="button" class="btn btn-success cancion" id={{id}}>
                                     <i class="glyphicon glyphicon-plus"></i>
                                 </button>
                                 <button type="button" class="btn btn-danger cancion" id={{id}}>
                                     <i class="glyphicon glyphicon-remove"></i>
-                                </button>
+                                </button-->
                             </td>
                         </tr>
                     {{/each}}
-                </tbody>
-            </table>
-        </script>
-    </div>
-        <div style="margin-left: 70%;">
-            <table>
-                <tr>
-                    <td><input type="text" class="form-control"
-                               id="lista" name="lista"
-                               placeholder="Lista Nueva">
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-success" id="btnAgregarLista">
-                            <i class="glyphicon glyphicon-plus"></i> Agregar
-                        </button>
-                    </td>
-                    </tr>
-                <tr>
-                    <td>
-                        <select class="form-control" id="lts">
-                            <script id="lis" type="text/x-handlebars-template">
-                                {{#each this}}
-                                <option>{{name}}</option>
-
-                                {{/each}}
-                            </script>
-                        </select>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-danger" id="btnRemoverLista">
-                            <i class="glyphicon glyphicon-remove"></i> Eliminar Lista
-                        </button>
-                    </td>
-                </tr>
-            </table>
-
-            <br>
-            <ul class="list-group" id="listaActual">
-                <script id="cancionesListaActual" type="text/x-handlebars-template">
-                    {{#each this}}
-                        <li class="list-group-item">
-                            {{title}}<br>
-                            {{artist}}<br>
-                            {{year}}<br>
-                            <button type="button" class="btn btn-danger" id="btnEliminarCancionLista">
-                                <i class="glyphicon glyphicon-remove"></i>
-                            </button>
-                        </li>
-                    {{/each}}
                 </script>
-            </ul>
+                <tr>
+                    <td>
+                        <button type="button" class="btn " id="btnAgregarCancionesListas">
+                                     <i class="glyphicon glyphicon-plus"></i> Agregar canciones a lista
+                        </button>
+                     </td>
+                    <td>
+                        <button type="button" class="btn " id="btnEliminarCanciones">
+                            <i class="glyphicon glyphicon-remove"></i> Eliminar Canciones
+                        </button>
+                    </td>
+                 </tr>
+                 </tbody>
+             </table>
+     </div>
+         <div style="margin-left: 72%; margin-right: 3%;">
+             <table>
+                 <tr>
+                     <td><input type="text" class="form-control"
+                                id="lista" name="lista"
+                                placeholder="Lista Nueva">
+                     </td>
+                     <td>
+                         <button type="button" class="btn" id="btnAgregarLista">
+                             <i class="glyphicon glyphicon-plus"></i> Agregar Lista
+                         </button>
+                     </td>
+                     </tr>
+                 <tr>
+                     <td>
+                         <select class="form-control" id="lts">
+                             <script id="lis" type="text/x-handlebars-template">
+                                 {{#each this}}
+                                 <option>{{name}}</option>
 
-        </div>
-    </div>
-</body>
-</html>
+                                 {{/each}}
+                             </script>
+                         </select>
+                     </td>
+                     <td>
+                         <button type="button" class="btn" id="btnRemoverCanciones">
+                             <i class="glyphicon glyphicon-remove"></i> Eliminar Canciones
+                         </button>
+                     </td>
+                 </tr>
+             </table>
+
+             <br>
+             <ul class="list-group" id="listaActual">
+                 <script id="cancionesListaActual" type="text/x-handlebars-template">
+                     {{#each this}}
+                     <li class="list-group-item">
+                         <input type="checkbox" class="check" id="{{@index}}">
+                         {{title}}<br>
+                         {{artist}}<br>
+                         {{year}}<br>
+                     </li>
+                     {{/each}}
+                 </script>
+             </ul>
+
+         </div>
+     </div>
+ </body>
+ </html>

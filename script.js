@@ -26,8 +26,39 @@ $(document).ready(function(){
         $("#btnEliminarLista").click(function(){
             eliminarLista();
         });
-        $(".btn").click(function(){
-            console.log("hola");
+
+        $("#btnAgregarCancionesListas").click(function(){
+            var ids=[];
+            $("#cuerpoTabla input:checked").each(function(){
+                ids.push(this.id);
+                console.log(this.id);
+            });
+            for(var i=0; i<ids.length; i++){
+                agregarCancionLista(ids[i]);
+            }
+            mostrarListas(listas);
+            mostrarCancionesLista(actual);
+        });
+        $("#btnEliminarCanciones").click(function(){
+            var ids=[];
+            $("#cuerpoTabla input:checked").each(function(){
+                ids.push(this.id);
+            });
+            for(var i=0; i<ids.length; i++){
+                removerCancion(ids[i]);
+            }
+            mostrarCanciones(canciones);
+            mostrarCancionesLista(actual);
+        });
+        $("#btnRemoverCanciones").click(function(){
+            var ids=[];
+            $("#listaActual input:checked").each(function(){
+                ids.push(this.id);
+            });
+            for(var i=0; i<ids.length; i++){
+                removerCancionLista(ids[i]);
+            }
+            mostrarCancionesLista(actual);
         });
 
     }
@@ -41,12 +72,7 @@ function cargarCanciones(){
         //carga la lista
         //onsole.log(xmlhttp.responseText);
         var x = JSON.parse(xmlhttp.responseText);
-        can = x.songs;
-        for(var i=0; i<can.length; i++){
-            var x = can[i];
-            var objeto = {id: 1, title: x.title, artist: x.artist, year: x.year, web_url: x.web_url, image_url: x.image_url };
-            canciones.push(objeto);
-        }
+        canciones = x.songs;
         //console.log(canciones);
         mostrarCanciones(canciones);
         mostrarListas(listas);
@@ -56,10 +82,10 @@ function cargarCanciones(){
 }
 
 function removerCancion(indice){
-    if(indice>-1 && indice<canciones.length){
-        canciones.split(indice,1);
-        mostrarCanciones();
+    if(indice>-1&&indice<canciones.length){
+        canciones.splice(indice,1);
     }
+
 }
 
 function agregarCancion(tit,art,y,url){
@@ -76,13 +102,12 @@ function agregarCancion(tit,art,y,url){
 }
 
 function agregarCancionLista(indice){
-    listas[actual].canciones.push(canciones[indice]);
-    mostrarListas(listas);
+    var x = canciones[indice];
+    actual.canciones.push(x);
 }
 
 function removerCancionLista(indice){
-    listas[actual].canciones.splice(indice,1);
-    mostrarListas(listas);
+    actual.canciones.splice(indice,1);
 
 }
 
@@ -118,15 +143,16 @@ function mostrarListas(listas){
 }
 
 function mostrarCanciones(canciones){
-    console.log("pasa por canciones");
+    console.log("holaholaholahola");
     if( plantillaCanciones == null && plantillaCanciones == undefined ){
         var fuentePlantilla = $("#canciones").html();
         var plantilla = Handlebars.compile( fuentePlantilla );
         plantillaCanciones = plantilla;
     }
     var html = plantillaCanciones(canciones);
-    $("#listaCanciones").html(html);
+    $("#cuerpoTabla").append(html);
 }
+
 
 function mostrarCancionesLista(actual){
     var cancionesLista = actual.canciones;
